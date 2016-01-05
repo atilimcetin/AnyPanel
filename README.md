@@ -8,9 +8,9 @@ This project is mostly inspired by [AnyBar](https://github.com/tonsky/AnyBar).
 
 ## Download
 
-Version 0.1.1:
+Version 0.1.2:
 
-<a href="https://github.com/atilimcetin/AnyPanel/releases/download/0.1.1/AnyPanel-0.1.1.zip">AnyPanel-0.1.1.zip</a>
+<a href="https://github.com/atilimcetin/AnyPanel/releases/download/0.1.2/AnyPanel-0.1.2.zip">AnyPanel-0.1.2.zip</a>
 
 
 ## Usage
