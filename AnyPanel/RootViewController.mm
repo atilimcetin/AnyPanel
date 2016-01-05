@@ -32,8 +32,8 @@
     _anyPanel = new AnyPanel(dirPath.path.UTF8String);
     
     [self checkPreferences];
-    
-    _pollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 60.0
+
+    _pollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 10.0
                                                   target:self
                                                 selector:@selector(poll)
                                                 userInfo:nil

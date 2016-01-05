@@ -299,10 +299,11 @@ ARect AnyPanel::geometry() const
 
 std::vector<std::string> AnyPanel::poll()
 {
-    io_service_.poll();
+    while (io_service_.poll())
+        ;
 
-    std::vector<std::string> queue = queue_;
-    queue_.clear();
+    std::vector<std::string> queue;
+    std::swap(queue_, queue);
 
     return queue;
 }
