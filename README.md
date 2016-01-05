@@ -10,7 +10,7 @@ This project is mostly inspired by [AnyBar](https://github.com/tonsky/AnyBar).
 
 Version 0.1.0:
 
-<a href="https://github.com/atilimcetin/AnyPanel/releases/download/0.1.0/AnyPanel-0.1.0.zip">AnyPanel-0.1.0.zip</a>
+<a href="https://github.com/atilimcetin/AnyPanel/releases/download/0.1.1/AnyPanel-0.1.1.zip">AnyPanel-0.1.1.zip</a>
 
 
 ## Usage
