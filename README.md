@@ -1,10 +1,8 @@
-This project is **OBSOLETE**
-
 # AnyPanel
 
-AnyPanel is an easy to use heads up display for Mac OS X to provide at-a-glance information. 
+AnyPanel is an easy to use heads up display for Mac OS X to provide at-a-glance information.
 
-<img src="screenshot.png?raw=true" />
+<img src="AnyPanel/resources/screenshot.png?raw=true" />
 
 This project is mostly inspired by [AnyBar](https://github.com/tonsky/AnyBar).
 
