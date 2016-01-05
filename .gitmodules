@@ -1,0 +1,9 @@
+[submodule "json"]
+	path = AnyPanel/json
+	url = https://github.com/nlohmann/json.git
+[submodule "asio"]
+	path = AnyPanel/asio
+	url = https://github.com/chriskohlhoff/asio.git
+[submodule "tinyformat"]
+	path = AnyPanel/tinyformat
+	url = https://github.com/c42f/tinyformat.git

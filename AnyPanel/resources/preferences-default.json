@@ -1,0 +1,24 @@
+{
+    "port": 6128,
+    "opacity": 0.5,
+    "font-family": "Lucida Console, Monaco, monospace",
+    "font-size": "10px",
+    "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 35
+    },
+    "panels": [{
+        "name": "general",
+        "rows": 2,
+        "columns": 4,
+        "color": "black",
+        "background-color": "lightgreen",
+        "color-2": "black",
+        "background-color-2": "lightblue",
+        "color-alternating-rows": false,
+        "color-alternating-columns": true,
+        "border": "1px solid black"
+    }]
+}

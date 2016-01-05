@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+%s
+</style>
+
+<script>
+%s
+</script>
+</head>
+
+<body>
+
+%s
+
+<script>
+
+function updateCell(id, text)
+{
+    var element = document.getElementById(id);
+    var html = ansi_up.ansi_to_html(ansi_up.escape_for_html(text));
+    element.innerHTML = html;
+    return element.innerHTML;
+}
+
+</script>
+
+
+</body>
+</html>
+
