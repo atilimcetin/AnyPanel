@@ -278,7 +278,7 @@
 				);
 				INFOPLIST_FILE = AnyPanel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giderosmobile.AnyPanel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atilimcetin.AnyPanel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -296,7 +296,7 @@
 				);
 				INFOPLIST_FILE = AnyPanel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.giderosmobile.AnyPanel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atilimcetin.AnyPanel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
