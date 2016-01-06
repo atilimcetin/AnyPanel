@@ -12,11 +12,10 @@
 #include "resources/main.css.inc"
 #include "resources/preferences-default.json.inc"
 
-
 AnyPanel::AnyPanel(const std::string &appDataLocation)
 {
     socket_ = NULL;
-    preferencesPath_ = appDataLocation + "/preferences.json";   // TODO: check directory and mkdir
+    preferencesPath_ = appDataLocation + "/preferences.json";
 }
 
 AnyPanel::~AnyPanel()
@@ -227,6 +226,24 @@ bool AnyPanel::loadPreferences()
         start_receive();
     }
 
+    for (std::size_t i = 0; i < threads_.size(); ++i)
+        threads_[i]->ignoreOutput = true;
+
+    scripts_.clear();
+
+    json scripts = preferences2_["scripts"];
+
+    for (std::size_t i = 0; i < scripts.size(); ++i)
+    {
+        json script = scripts[i];
+
+        std::string cell = script["cell"];
+        int frequency = script["frequency"];
+        std::string command = script["command"];
+
+        scripts_.push_back({cell, command, frequency, 0});
+    }
+
     return true;
 }
 
@@ -297,14 +314,80 @@ ARect AnyPanel::geometry() const
     return ARect{x, y, width, height};
 }
 
-std::vector<std::string> AnyPanel::poll()
+void AnyPanel::pollUdp()
 {
     while (io_service_.poll())
         ;
+}
+
+void AnyPanel::checkThreads()
+{
+    if (threads_.empty())
+        return;
+
+    for (size_t i = threads_.size(); i --> 0 ;)
+    {
+        if (threads_[i]->finished)
+        {
+            if (threads_[i]->ignoreOutput == false)
+                commandToJavascript(threads_[i]->cell + " " + threads_[i]->output);
+            delete threads_[i];
+            threads_.erase(threads_.begin() + i);
+        }
+    }
+}
+
+void AnyPanel::checkScripts()
+{
+    time_t curr = time(NULL);
+
+    for (std::size_t i = 0; i < scripts_.size(); ++i)
+    {
+        if (curr >= scripts_[i].lastTime + scripts_[i].frequency)
+        {
+            createThread(scripts_[i].command, scripts_[i].cell);
+            scripts_[i].lastTime = curr;
+        }
+    }
+}
+
+std::vector<std::string> AnyPanel::poll()
+{
+    pollUdp();
+    checkThreads();
+    checkScripts();
 
     std::vector<std::string> queue;
     std::swap(queue_, queue);
 
     return queue;
 }
+
+void *AnyPanel::threadFunc(void *data)
+{
+    Thread *thread = static_cast<Thread*>(data);
+
+    FILE *f = popen(thread->command.c_str(), "r");
+
+    if (f)
+    {
+        char c; // TODO: use bigger buffer
+        while (fread(&c, 1, 1, f) > 0)
+            if (!isControlCodeExcept0x1b(c))
+                thread->output.push_back(c);
+        pclose(f);
+    }
+
+    thread->finished = true;
+
+    return NULL;
+}
+
+void AnyPanel::createThread(const std::string &command, const std::string &cell)
+{
+    Thread *thread = new Thread(command, cell);
+    pthread_create(&thread->thread, NULL, threadFunc, (void*)thread);
+    threads_.push_back(thread);
+}
+
 

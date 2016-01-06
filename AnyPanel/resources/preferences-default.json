@@ -20,5 +20,14 @@
         "color-alternating-rows": false,
         "color-alternating-columns": true,
         "border": "1px solid black"
+    }],
+    "scripts": [{
+        "cell": "1,1",
+        "frequency": 1,
+        "command": "/bin/date"
+    }, {
+        "cell": "2,1",
+        "frequency": 10,
+        "command": "/bin/date"
     }]
 }

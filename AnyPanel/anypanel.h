@@ -4,6 +4,7 @@
 #include <time.h>
 #include <vector>
 #include <string>
+#include <pthread.h>
 
 #include <json.hpp>
 using json = nlohmann::json;
@@ -35,6 +36,9 @@ private:
     void start_receive();
     void commandToJavascript(const std::string &command);
     int port() const;
+    void pollUdp();
+    void checkThreads();
+    void checkScripts();
 
 private:
     json preferences2_;
@@ -46,6 +50,29 @@ private:
     char data_[max_length];
     std::vector<std::string> queue_;
     std::string preferencesPath_;
+
+    struct Thread
+    {
+        Thread(const std::string &command, const std::string &cell) : command(command), cell(cell), finished(false), ignoreOutput(false) { }
+        pthread_t thread;
+        std::string command;
+        std::string cell;
+        std::string output;
+        bool finished;
+        bool ignoreOutput;
+    };
+    std::vector<Thread*> threads_;
+    void createThread(const std::string &command, const std::string &cell);
+    static void *threadFunc(void *data);
+
+    struct Script
+    {
+        std::string cell;
+        std::string command;
+        int frequency;
+        time_t lastTime;
+    };
+    std::vector<Script> scripts_;
 };
 
 #endif // ANYPANEL_H
