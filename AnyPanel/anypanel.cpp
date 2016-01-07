@@ -24,10 +24,10 @@ AnyPanel::~AnyPanel()
     delete socket_;
 }
 
-static std::string stripteaseRead(const char *fileName)
+static std::string stripteaseUndress(const char *fileName)
 {
     char *content = NULL;
-    size_t size = striptease_read(fileName, &content);
+    size_t size = striptease_undress(fileName, &content);
 
     if (size == 0)
         return std::string();
@@ -244,7 +244,7 @@ bool AnyPanel::loadPreferences()
         return false;
     lastModified_ = t;
 
-    std::string buffer = stripteaseRead(preferencesPath_.c_str());
+    std::string buffer = stripteaseUndress(preferencesPath_.c_str());
 
     try
     {
