@@ -4,13 +4,13 @@ AnyPanel is an easy to use heads up display for Mac OS X to provide at-a-glance 
 
 <img src="AnyPanel/resources/screenshot.png?raw=true" />
 
-This project is mostly inspired by [AnyBar](https://github.com/tonsky/AnyBar).
+This project is mostly inspired by [AnyBar](https://github.com/tonsky/AnyBar) and [BitBar](https://github.com/matryer/bitbar).
 
 ## Download
 
-Version 0.1.2:
+Version 0.1.3:
 
-<a href="https://github.com/atilimcetin/AnyPanel/releases/download/0.1.2/AnyPanel-0.1.2.zip">AnyPanel-0.1.2.zip</a>
+<a href="https://github.com/atilimcetin/AnyPanel/releases/download/0.1.3/AnyPanel-0.1.3.zip">AnyPanel-0.1.3.zip</a>
 
 
 ## Usage
