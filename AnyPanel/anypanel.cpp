@@ -13,10 +13,14 @@
 #include "resources/main.css.inc"
 #include "resources/preferences-default.json.inc"
 
-AnyPanel::AnyPanel(const std::string &appDataLocation)
+AnyPanel::AnyPanel(const std::string &appDataLocation, int defaultX, int defaultY, int defaultWidth, int defaultHeight)
 {
     socket_ = NULL;
     preferencesPath_ = appDataLocation + "/preferences.json";
+    defaultX_ = defaultX;
+    defaultY_ = defaultY;
+    defaultWidth_ = defaultWidth;
+    defaultHeight_ = defaultHeight;
 }
 
 AnyPanel::~AnyPanel()
@@ -237,7 +241,7 @@ bool AnyPanel::loadPreferences()
     if (lastModified(preferencesPath_.c_str()) == 0)
     {
         std::FILE *f = std::fopen(preferencesPath_.c_str(), "wb");
-        fprintf(f, "%s", preferences_default_json);
+        fprintf(f, "%s", tfm::format((const char*)preferences_default_json, defaultX_, defaultY_, defaultWidth_, defaultHeight_).c_str());
         fclose(f);
     }
 

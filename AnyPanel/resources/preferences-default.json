@@ -4,10 +4,10 @@
     "font-family": "Lucida Console, Monaco, monospace",
     "font-size": "10px",
     "geometry": {
-        "x": 0,
-        "y": 0,
-        "width": 1000,
-        "height": 35
+        "x": %d,
+        "y": %d,
+        "width": %d,
+        "height": %d
     },
     "panels": [{
         "name": "general",

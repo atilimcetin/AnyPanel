@@ -29,7 +29,15 @@
     NSURL *dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:@"AnyPanel"];
     [fileManager createDirectoryAtURL:dirPath withIntermediateDirectories:YES attributes:nil error:nil];
     
-    _anyPanel = new AnyPanel(dirPath.path.UTF8String);
+    NSRect frame = [[NSScreen mainScreen] frame];
+    NSRect visibleFrame = [[NSScreen mainScreen] visibleFrame];
+    
+    int width = 600;
+    int height = 35;
+    int x = frame.size.width - width;
+    int y = frame.size.height - (visibleFrame.origin.y + visibleFrame.size.height);
+    
+    _anyPanel = new AnyPanel(dirPath.path.UTF8String, x, y, width, height);
     
     [self checkPreferences];
 

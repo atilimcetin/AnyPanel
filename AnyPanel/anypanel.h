@@ -23,7 +23,7 @@ struct ARect
 class AnyPanel
 {
 public:
-    AnyPanel(const std::string &appDataLocation);
+    AnyPanel(const std::string &appDataLocation, int defaultX, int defaultY, int defaultWidth, int defaultHeight);
     ~AnyPanel();
 
     bool loadPreferences();
@@ -50,6 +50,7 @@ private:
     char data_[max_length];
     std::vector<std::string> queue_;
     std::string preferencesPath_;
+    int defaultX_, defaultY_, defaultWidth_, defaultHeight_;
 
     struct Thread
     {
