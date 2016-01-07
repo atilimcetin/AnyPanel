@@ -1,6 +1,6 @@
 {
     "port": 6128,
-    "opacity": 0.5,
+    "opacity": 0.65,
     "font-family": "Lucida Console, Monaco, monospace",
     "font-size": "10px",
     "geometry": {
@@ -23,11 +23,27 @@
     }],
     "scripts": [{
         "cell": "1,1",
+        "frequency": "10s",
+        "command": "/Applications/AnyPanel.app/Contents/Scripts/disk-usage.sh"
+    }, {
+        "cell": "1,2",
+        "frequency": "10m",
+        "command": "/Applications/AnyPanel.app/Contents/Scripts/external-ip.sh"
+    }, {
+        "cell": "2,2",
+        "frequency": "1m",
+        "command": "/Applications/AnyPanel.app/Contents/Scripts/local-ip.sh"
+    }, {
+        "cell": "1,4",
         "frequency": "1s",
-        "command": "/bin/date"
+        "command": "/Applications/AnyPanel.app/Contents/Scripts/ping-google-dns.sh"
     }, {
         "cell": "2,1",
         "frequency": "10s",
-        "command": "/bin/date"
+        "command": "/Applications/AnyPanel.app/Contents/Scripts/smiley.sh"
+    }, {
+        "cell": "2,4",
+        "frequency": "10s",
+        "command": "/Applications/AnyPanel.app/Contents/Scripts/wifiname.sh"
     }]
 }
