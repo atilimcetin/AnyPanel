@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F7E23881C3E6E3C006F90A5 /* striptease.c in Sources */ = {isa = PBXBuildFile; fileRef = 5F7E23871C3E6E3C006F90A5 /* striptease.c */; };
 		5FB46CE01C34301200DE4AA2 /* anypanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FB46CDE1C34301200DE4AA2 /* anypanel.cpp */; };
 		5FB93B711C31AC73004FCFD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB93B701C31AC73004FCFD0 /* AppDelegate.m */; };
 		5FB93B741C31AC73004FCFD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB93B731C31AC73004FCFD0 /* main.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F7E23871C3E6E3C006F90A5 /* striptease.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = striptease.c; path = striptease/striptease.c; sourceTree = "<group>"; };
 		5FB46CDE1C34301200DE4AA2 /* anypanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = anypanel.cpp; sourceTree = "<group>"; };
 		5FB46CDF1C34301200DE4AA2 /* anypanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anypanel.h; sourceTree = "<group>"; };
 		5FB93B6C1C31AC73004FCFD0 /* AnyPanel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnyPanel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 				5FB93B831C31C944004FCFD0 /* RootViewController.mm */,
 				5FB46CDE1C34301200DE4AA2 /* anypanel.cpp */,
 				5FB46CDF1C34301200DE4AA2 /* anypanel.h */,
+				5F7E23871C3E6E3C006F90A5 /* striptease.c */,
 				5FB93B751C31AC73004FCFD0 /* Assets.xcassets */,
 				5FB93B771C31AC73004FCFD0 /* MainMenu.xib */,
 				5FB93B7A1C31AC73004FCFD0 /* Info.plist */,
@@ -165,6 +168,7 @@
 				5FB93B741C31AC73004FCFD0 /* main.m in Sources */,
 				5FB46CE01C34301200DE4AA2 /* anypanel.cpp in Sources */,
 				5FB93B711C31AC73004FCFD0 /* AppDelegate.m in Sources */,
+				5F7E23881C3E6E3C006F90A5 /* striptease.c in Sources */,
 				5FB93B841C31C944004FCFD0 /* RootViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +279,7 @@
 					AnyPanel/json/src,
 					AnyPanel/asio/asio/include,
 					AnyPanel/tinyformat,
+					AnyPanel/striptease,
 				);
 				INFOPLIST_FILE = AnyPanel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -294,6 +299,7 @@
 					AnyPanel/json/src,
 					AnyPanel/asio/asio/include,
 					AnyPanel/tinyformat,
+					AnyPanel/striptease,
 				);
 				INFOPLIST_FILE = AnyPanel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

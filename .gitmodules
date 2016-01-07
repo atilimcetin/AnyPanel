@@ -7,3 +7,6 @@
 [submodule "AnyPanel/tinyformat"]
 	path = AnyPanel/tinyformat
 	url = https://github.com/c42f/tinyformat.git
+[submodule "AnyPanel/striptease"]
+	path = AnyPanel/striptease
+	url = https://github.com/xor-gate/striptease.git

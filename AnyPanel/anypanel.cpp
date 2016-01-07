@@ -5,7 +5,8 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include "tinyformat.h"
+#include <tinyformat.h>
+#include <striptease.h>
 
 #include "resources/ansi_up.js.inc"
 #include "resources/index.html.inc"
@@ -23,21 +24,17 @@ AnyPanel::~AnyPanel()
     delete socket_;
 }
 
-static std::string readAll(const char *fileName)
+static std::string stripteaseRead(const char *fileName)
 {
-    std::FILE *fp = std::fopen(fileName, "rb");
-    if (fp)
-    {
-        std::string contents;
-        std::fseek(fp, 0, SEEK_END);
-        contents.resize(std::ftell(fp));
-        std::rewind(fp);
-        std::fread(&contents[0], 1, contents.size(), fp);
-        std::fclose(fp);
-        return contents;
-    }
+    char *content = NULL;
+    size_t size = striptease_read(fileName, &content);
 
-    return std::string();
+    if (size == 0)
+        return std::string();
+
+    std::string result(content, content + size);
+    striptease_dress(&content);
+    return result;
 }
 
 static time_t lastModified(const char *fileName)
@@ -247,7 +244,7 @@ bool AnyPanel::loadPreferences()
         return false;
     lastModified_ = t;
 
-    std::string buffer = readAll(preferencesPath_.c_str());
+    std::string buffer = stripteaseRead(preferencesPath_.c_str());
 
     try
     {
