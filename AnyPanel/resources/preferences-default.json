@@ -23,11 +23,11 @@
     }],
     "scripts": [{
         "cell": "1,1",
-        "frequency": 1,
+        "frequency": "1s",
         "command": "/bin/date"
     }, {
         "cell": "2,1",
-        "frequency": 10,
+        "frequency": "10s",
         "command": "/bin/date"
     }]
 }

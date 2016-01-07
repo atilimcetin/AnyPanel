@@ -116,6 +116,27 @@ std::string AnyPanel::generateHtml() const
     return result;
 }
 
+static int parseFrequency(const std::string &frequency)
+{
+    if (frequency.size() <= 1)
+        return 0;
+
+    if (frequency.back() != 's' && frequency.back() != 'm' && frequency.back() != 'h')
+        return 0;
+
+    switch (frequency.back())
+    {
+    case 's':
+        return std::atoi(frequency.c_str());
+    case 'm':
+        return 60 * std::atoi(frequency.c_str());
+    case 'h':
+        return 3600 * std::atoi(frequency.c_str());
+    }
+
+    return 0;
+}
+
 static bool validatePreferences(const json &preferences)
 {
     if (!preferences.is_object())
@@ -189,6 +210,26 @@ static bool validatePreferences(const json &preferences)
             return false;
     }
 
+
+    json scripts = preferences["scripts"];
+
+    for (std::size_t i = 0; i < scripts.size(); ++i)
+    {
+        json script = scripts[i];
+
+        if (!script.count("cell") || !script["cell"].is_string())
+            return false;
+
+        if (!script.count("frequency") || !script["frequency"].is_string())
+            return false;
+
+        if (parseFrequency(script["frequency"]) <= 0)
+            return false;
+
+        if (!script.count("command") || !script["command"].is_string())
+            return false;
+    }
+
     return true;
 }
 
@@ -238,7 +279,7 @@ bool AnyPanel::loadPreferences()
         json script = scripts[i];
 
         std::string cell = script["cell"];
-        int frequency = script["frequency"];
+        int frequency = parseFrequency(script["frequency"]);
         std::string command = script["command"];
 
         scripts_.push_back({cell, command, frequency, 0});
