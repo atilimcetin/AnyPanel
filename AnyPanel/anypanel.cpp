@@ -207,6 +207,8 @@ static bool validatePreferences(const json &preferences)
             return false;
     }
 
+    if (!preferences.count("scripts") || !preferences["scripts"].is_array())
+        return false;
 
     json scripts = preferences["scripts"];
 
