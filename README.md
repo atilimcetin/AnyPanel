@@ -24,9 +24,13 @@ echo -n -e "\033[31mFizz\033[32mBuzz" # display red "Fizz" and green "Buzz"
 
 The application window is semi-transparent, always on top and does not intercept mouse clicks.
 
+## Example scripts
+
+You can find some example scripts at [Scripts](Scripts) directory.
+
 ## Customization
 
-The configuration file stores the window opacity, coordinates of the application, grid size, grid color, border style and scripts. If the contents of the configuration file is changed while AnyPanel.app is running, the app automatically reads the configuration file and applies the changes.
+The configuration file at `~/Library/Application Support/AnyPanel/preferences.json` stores the window opacity, coordinates of the application, grid size, grid color, border style and scripts. If the contents of the configuration file is changed while AnyPanel.app is running, the app automatically reads the configuration file and applies the changes.
 
 The grid displayed is basically an HTML file. While customizing the app, you can use HTML color codes and CSS styles, etc.
 
