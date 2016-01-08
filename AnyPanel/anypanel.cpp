@@ -15,7 +15,6 @@
 
 AnyPanel::AnyPanel(const std::string &appDataLocation, int defaultX, int defaultY, int defaultWidth, int defaultHeight)
 {
-    socket_ = NULL;
     preferencesPath_ = appDataLocation + "/preferences.json";
     defaultX_ = defaultX;
     defaultY_ = defaultY;
@@ -25,7 +24,6 @@ AnyPanel::AnyPanel(const std::string &appDataLocation, int defaultX, int default
 
 AnyPanel::~AnyPanel()
 {
-    delete socket_;
 }
 
 static std::string stripteaseUndress(const char *fileName)
@@ -143,8 +141,6 @@ static bool validatePreferences(const json &preferences)
     if (!preferences.is_object())
         return false;
 
-    if (!preferences.count("port") || !preferences["port"].is_number())
-        return false;
     if (!preferences.count("opacity") || !preferences["opacity"].is_number())
         return false;
     if (!preferences.count("font-family") || !preferences["font-family"].is_string())
@@ -264,12 +260,6 @@ bool AnyPanel::loadPreferences()
     if (validatePreferences(preferences2_) == false)
         return false;
 
-    if (socket_ == NULL)
-    {
-        socket_ = new udp::socket(io_service_, udp::endpoint(udp::v4(), port()));
-        start_receive();
-    }
-
     for (std::size_t i = 0; i < threads_.size(); ++i)
         threads_[i]->ignoreOutput = true;
 
@@ -303,25 +293,6 @@ static bool isControlCodeExcept0x1b(char c)
     return false;
 }
 
-void AnyPanel::start_receive()
-{
-    socket_->async_receive_from(
-        asio::buffer(data_, max_length), sender_endpoint_,
-        [this](std::error_code ec, std::size_t bytes_recvd)
-        {
-          if (!ec && bytes_recvd > 0)
-          {
-              *std::remove_if(data_, data_ + bytes_recvd, isControlCodeExcept0x1b) = 0;
-              commandToJavascript(data_);
-              start_receive();
-          }
-          else
-          {
-              start_receive();
-          }
-    });
-}
-
 void AnyPanel::commandToJavascript(const std::string &command)
 {
     size_t index = command.find(' ');
@@ -338,11 +309,6 @@ void AnyPanel::commandToJavascript(const std::string &command)
     }
 }
 
-int AnyPanel::port() const
-{
-    return preferences2_["port"];
-}
-
 double AnyPanel::opacity() const
 {
     return preferences2_["opacity"];
@@ -356,12 +322,6 @@ ARect AnyPanel::geometry() const
     int width = geometry["width"];
     int height = geometry["height"];
     return ARect{x, y, width, height};
-}
-
-void AnyPanel::pollUdp()
-{
-    while (io_service_.poll())
-        ;
 }
 
 void AnyPanel::checkThreads()
@@ -397,7 +357,6 @@ void AnyPanel::checkScripts()
 
 std::vector<std::string> AnyPanel::poll()
 {
-    pollUdp();
     checkThreads();
     checkScripts();
 

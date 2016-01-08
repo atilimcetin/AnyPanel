@@ -9,9 +9,6 @@
 #include <json.hpp>
 using json = nlohmann::json;
 
-#include <asio.hpp>
-using asio::ip::udp;
-
 struct ARect
 {
     int x;
@@ -33,21 +30,13 @@ public:
     std::vector<std::string> poll();
 
 private:
-    void start_receive();
     void commandToJavascript(const std::string &command);
-    int port() const;
-    void pollUdp();
     void checkThreads();
     void checkScripts();
 
 private:
     json preferences2_;
     time_t lastModified_;
-    asio::io_service io_service_;
-    udp::socket *socket_;
-    udp::endpoint sender_endpoint_;
-    enum { max_length = 1024 };
-    char data_[max_length];
     std::vector<std::string> queue_;
     std::string preferencesPath_;
     int defaultX_, defaultY_, defaultWidth_, defaultHeight_;
